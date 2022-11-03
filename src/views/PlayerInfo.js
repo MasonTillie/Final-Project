@@ -1,23 +1,15 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 
 
 export default function PlayerInfo() {
-  const [playerName, setPlayerName] = useState('')
-  const [playerPosition, setPlayerPosition] = useState('')
-  const [playerHeight, setPlayerHeight] = useState('')
-  const [playerWeight, setPlayerWeight] = useState('')
+  
 
   const getPlayer = async () => {
     const responce = await fetch('https://www.balldontlie.io/api/v1/players?search=lebron')
     const data = await responce.json()
     console.log(data)
-    setPlayerName(data['first_name'])
-    setPlayerPosition(data['position'])
-    setPlayerHeight(data['height_feet'])
-    setPlayerWeight(data['weight_pounds'])
-
-
+  
     const name = data.data[0].first_name
     const lastname = data.data[0].last_name
     const pos = data.data[0].position
