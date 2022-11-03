@@ -7,7 +7,6 @@ export default function PlayerInfo() {
   const [playerPosition, setPlayerPosition] = useState('')
   const [playerHeight, setPlayerHeight] = useState('')
   const [playerWeight, setPlayerWeight] = useState('')
-  const [playerTeam, setPlayerTeam] = useState('')
 
   const getPlayer = async () => {
     const responce = await fetch('https://www.balldontlie.io/api/v1/players?search=lebron')
@@ -17,7 +16,6 @@ export default function PlayerInfo() {
     setPlayerPosition(data['position'])
     setPlayerHeight(data['height_feet'])
     setPlayerWeight(data['weight_pounds'])
-    setPlayerTeam(data['full_name'])
 
 
     const name = data.data[0].first_name
@@ -26,7 +24,7 @@ export default function PlayerInfo() {
     const height = data.data[0].height_feet
     const height_inch = data.data[0].height_inches
     const weight = data.data[0].weight_pounds
-    const team_full_name = data.data[1].full_name
+    const team_full_name = data.data[0]['team'].full_name
 
 
     document.querySelector('#playername').innerText = 'Player Name: ' + name + " " + lastname
@@ -46,7 +44,6 @@ export default function PlayerInfo() {
         <img src="https://images.complex.com/complex/images/c_scale,f_auto,q_auto,w_1920/fl_lossy,pg_1/utgfcacoxl6hwd2bj2ay/10-most-influential-nba-players-2022-original-nonw?fimg-ssr-default" className="card-img-top" alt="Sunset Over the Sea" />
         <div className="card-body">
           <p className="card-text" id='playername'>Player Name</p>
-          <p className="card-text" id='playerteam'>Player Team</p>
           <p className="card-text" id='playerPos'>Player Position</p>
           <p className="card-text" id='playerheight'>Player Height</p>
           <p className="card-text" id='playerWeight'>Player Weight</p>
